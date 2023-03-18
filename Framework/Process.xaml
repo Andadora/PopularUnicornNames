@@ -4,7 +4,7 @@
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>1096,2321</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1096,2320</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -134,7 +134,7 @@
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="496,2256" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="496,2255" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dt_FemaleNames" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_MaleNames" />
@@ -178,7 +178,7 @@
         </InArgument>
       </ui:AddDataColumn.DataTable>
     </ui:AddDataColumn>
-    <Assign DisplayName="Copy Female names dt to combined dt" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign DisplayName="Copy Female names dt to combined dt" sap:VirtualizedContainerService.HintSize="434,81" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="sd:DataTable">
           <CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_9">dt_Combined</CSharpReference>
@@ -228,19 +228,19 @@
     </ui:MergeDataTable>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Add Month Column" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Framework\\ProcessWorkflows\\AddMonthColumn.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DataTable">
-          <CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_7">dt_Combined</CSharpReference>
+        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dt_DataTable">
+          <CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_12">dt_Combined</CSharpReference>
         </InOutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Add UnicornName Column" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Framework\\ProcessWorkflows\\AddUnicornNameColumn.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DataTable">
-          <CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_8">dt_Combined</CSharpReference>
-        </InOutArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_Url">
           <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_8">in_Config["UnicornNameUrl"].ToString()</CSharpValue>
         </InArgument>
+        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dt_DataTable">
+          <CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_13">dt_Combined</CSharpReference>
+        </InOutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:SortDataTable ColumnIndex="{x:Null}" DataColumn="{x:Null}" ColumnName="Children Count" DisplayName="Sort Data Table by Children count" sap:VirtualizedContainerService.HintSize="434,80" sap2010:WorkflowViewState.IdRef="SortDataTable_1" Order="Decending" SortOrder="Descending">
@@ -261,9 +261,7 @@
           <CSharpValue x:TypeArguments="sd:DataColumn" sap2010:WorkflowViewState.IdRef="CSharpValue`1_18">dt_Combined.Columns["Gender"]</CSharpValue>
         </InArgument>
       </InvokeMethod.TargetObject>
-      <InArgument x:TypeArguments="x:Int32">
-        <Literal x:TypeArguments="x:Int32" Value="1" />
-      </InArgument>
+      <InArgument x:TypeArguments="x:Int32">1</InArgument>
     </InvokeMethod>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="CreateOutputReport.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Framework\\ProcessWorkflows\\CreateOutputReport.xaml">
       <ui:InvokeWorkflowFile.Arguments>
@@ -273,9 +271,6 @@
         <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_Results">
           <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_20">dt_Combined</CSharpValue>
         </InArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_OutputReportFilepath">
-          <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_11">ReportFilepath</CSharpReference>
-        </OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
   </Sequence>

@@ -1,10 +1,10 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="AddUnicornNameColumn" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:u="clr-namespace:UnicornName;assembly=UnicornName" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="io_DataTable" Type="InOutArgument(sd:DataTable)" />
     <x:Property Name="in_Url" Type="InArgument(x:String)" />
+    <x:Property Name="io_dt_DataTable" Type="InOutArgument(sd:DataTable)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>1096,1105</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1096,1237</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -109,7 +109,7 @@
       <AssemblyReference>System.Data.Common</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="AddUnicornNameColumn" sap:VirtualizedContainerService.HintSize="546,1040" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="AddUnicornNameColumn" sap:VirtualizedContainerService.HintSize="546,1172" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -118,7 +118,7 @@
     <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Unicorn Name" DisplayName="Add UnicornName Data Column" sap:VirtualizedContainerService.HintSize="484,186" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_1">
       <ui:AddDataColumn.DataTable>
         <InArgument x:TypeArguments="sd:DataTable">
-          <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">io_DataTable</CSharpValue>
+          <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">io_dt_DataTable</CSharpValue>
         </InArgument>
       </ui:AddDataColumn.DataTable>
     </ui:AddDataColumn>
@@ -137,7 +137,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <u:GenerateUnicornName sap:VirtualizedContainerService.HintSize="388,243" sap2010:WorkflowViewState.IdRef="GenerateUnicornName_1">
+            <u:GenerateUnicornName DisplayName="Generate ithUnicornName" sap:VirtualizedContainerService.HintSize="388,243" sap2010:WorkflowViewState.IdRef="GenerateUnicornName_1">
               <u:GenerateUnicornName.in_Month>
                 <InArgument x:TypeArguments="x:String">
                   <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_10">CurrentRow.Field&lt;string&gt;("Month")</CSharpValue>
@@ -176,9 +176,16 @@
       </ui:ForEachRow.Body>
       <ui:ForEachRow.DataTable>
         <InArgument x:TypeArguments="sd:DataTable">
-          <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_2">io_DataTable</CSharpValue>
+          <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_2">io_dt_DataTable</CSharpValue>
         </InArgument>
       </ui:ForEachRow.DataTable>
     </ui:ForEachRow>
+    <ui:LogMessage DisplayName="Log Message Unicorn Name Column Added" sap:VirtualizedContainerService.HintSize="484,92" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info">
+      <ui:LogMessage.Message>
+        <InArgument x:TypeArguments="x:Object">
+          <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_11">"Unicorn Name Column added."</CSharpValue>
+        </InArgument>
+      </ui:LogMessage.Message>
+    </ui:LogMessage>
   </Sequence>
 </Activity>
