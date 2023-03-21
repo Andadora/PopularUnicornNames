@@ -3,7 +3,7 @@
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>1031.2,2882.4</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>712,1244.8</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="46">
@@ -83,7 +83,7 @@
       <AssemblyReference>System.Private.Xml</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Deletes all unprocessed items from the queue. It is useful to mark all remaining unprocessed items when the dispatcher process adds similar set of items with each run and there is no mechanism of external (in source) marking item as done in producer process." DisplayName="Delete  All Unprocessed Queue Items" sap:VirtualizedContainerService.HintSize="505.6,2817.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Deletes all unprocessed items from the queue. It assures that when process runs there will be only one new item with correct timestamp (as the process is linear we do not want to process more than one item)" DisplayName="Delete  All Unprocessed Queue Items" sap:VirtualizedContainerService.HintSize="547.2,1180" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:IEnumerable(ui:QueueItem)" Name="UnprocessedQueueItemsToDelete" />
     </Sequence.Variables>
@@ -93,14 +93,14 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message (Delete queue items)" sap:VirtualizedContainerService.HintSize="443.2,102.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info">
+    <ui:LogMessage DisplayName="Log Message (Delete queue items)" sap:VirtualizedContainerService.HintSize="484.8,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info">
       <ui:LogMessage.Message>
         <InArgument x:TypeArguments="x:Object">
           <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_13">"Deleting unprocessed queue items... "</CSharpValue>
         </InArgument>
       </ui:LogMessage.Message>
     </ui:LogMessage>
-    <ui:GetQueueItems Priority="{x:Null}" DisplayName="Get unprocessed Queue Items" FilterStrategy="Equals" sap:VirtualizedContainerService.HintSize="443.2,965.6" sap2010:WorkflowViewState.IdRef="GetQueueItems_1" QueueItemStates="New">
+    <ui:GetQueueItems Priority="{x:Null}" DisplayName="Get unprocessed Queue Items" FilterStrategy="Equals" sap:VirtualizedContainerService.HintSize="484.8,172" sap2010:WorkflowViewState.IdRef="GetQueueItems_1" QueueItemStates="New">
       <ui:GetQueueItems.Duration>
         <InArgument x:TypeArguments="s:Nullable(x:Int32)" />
       </ui:GetQueueItems.Duration>
@@ -138,15 +138,15 @@
         <InArgument x:TypeArguments="x:Int32" />
       </ui:GetQueueItems.Top>
     </ui:GetQueueItems>
-    <ui:InterruptibleWhile CurrentIndex="{x:Null}" DisplayName="While there are unprocessed items in queue" sap:VirtualizedContainerService.HintSize="443.2,1470.4" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+    <ui:InterruptibleWhile CurrentIndex="{x:Null}" DisplayName="While there are unprocessed items in queue" sap:VirtualizedContainerService.HintSize="484.8,663.2" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
       <ui:InterruptibleWhile.Body>
-        <Sequence DisplayName="Delete  Unprocessed Queue Items And Check if retry needed" sap:VirtualizedContainerService.HintSize="408,1293.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <Sequence DisplayName="Delete  Unprocessed Queue Items And Check if retry needed" sap:VirtualizedContainerService.HintSize="449.6,496" sap2010:WorkflowViewState.IdRef="Sequence_3">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:DeleteQueueItems ContinueOnError="False" DisplayName="Delete  Unprocessed Queue Items" sap:VirtualizedContainerService.HintSize="345.6,185.6" sap2010:WorkflowViewState.IdRef="DeleteQueueItems_1">
+          <ui:DeleteQueueItems ContinueOnError="False" DisplayName="Delete  Unprocessed Queue Items" sap:VirtualizedContainerService.HintSize="387.2,172" sap2010:WorkflowViewState.IdRef="DeleteQueueItems_1">
             <ui:DeleteQueueItems.FolderPath>
               <InArgument x:TypeArguments="x:String">
                 <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_10">in_Config["OrchestratorQueueFolder"].ToString()</CSharpValue>
@@ -161,7 +161,7 @@
               <InArgument x:TypeArguments="x:Int32" />
             </ui:DeleteQueueItems.TimeoutMS>
           </ui:DeleteQueueItems>
-          <ui:GetQueueItems Priority="{x:Null}" DisplayName="Get Unprocessed Queue Items after deletion" FilterStrategy="Equals" sap:VirtualizedContainerService.HintSize="346,945" sap2010:WorkflowViewState.IdRef="GetQueueItems_2" QueueItemStates="New">
+          <ui:GetQueueItems Priority="{x:Null}" DisplayName="Get Unprocessed Queue Items after deletion" FilterStrategy="Equals" sap:VirtualizedContainerService.HintSize="387.2,172" sap2010:WorkflowViewState.IdRef="GetQueueItems_2" QueueItemStates="New">
             <ui:GetQueueItems.Duration>
               <InArgument x:TypeArguments="s:Nullable(x:Int32)" />
             </ui:GetQueueItems.Duration>
